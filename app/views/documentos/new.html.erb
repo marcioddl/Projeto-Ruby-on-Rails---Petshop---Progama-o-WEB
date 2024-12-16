@@ -1,0 +1,24 @@
+
+ <h1>Novo Documento</h1>
+
+<%= form_with model: @documento, local: true do |form| %>
+  <div>
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%= form.label :descricao %>
+    <%= form.text_area :descricao %>
+  </div>
+
+  <div>
+    <%= form.label :arquivo %>
+    <%= form.file_field :arquivo %>
+  </div>
+
+  <div>
+    <%= form.submit "Enviar" %>
+  </div>
+<% end %>
+

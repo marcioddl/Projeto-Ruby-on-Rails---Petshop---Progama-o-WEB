@@ -1,0 +1,62 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body style="background-color: #f8f9fa;">
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-info text-white text-center">
+        <h2>Editar Dono</h2>
+      </div>
+      <div class="card-body">
+        <%= form_with model: @dono, local: true do |form| %>
+          <% if @dono.errors.any? %>
+            <div class="alert alert-danger">
+              <h4><%= pluralize(@dono.errors.count, "erro") %> proibiu este dono de ser salvo:</h4>
+              <ul>
+                <% @dono.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-group">
+            <%= form.label :nome, class: 'text-info' %>
+            <%= form.text_field :nome, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :telefone, class: 'text-info' %>
+            <%= form.text_field :telefone, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :email, class: 'text-info' %>
+            <%= form.text_field :email, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :endereco, class: 'text-info' %>
+            <%= form.text_field :endereco, class: 'form-control' %>
+          </div>
+
+          <!-- Adicionando o campo CPF -->
+          <div class="form-group">
+            <%= form.label :cpf, class: 'text-info' %>
+            <%= form.text_field :cpf, class: 'form-control' %>
+          </div>
+
+          <div class="form-group text-center">
+            <%= form.submit "Salvar", class: 'btn btn-info btn-lg' %>
+          </div>
+        <% end %>
+      <!-- Botão Voltar -->
+          <div class="form-group text-center">
+            <%= link_to 'Voltar', donos_path, class: 'btn btn-secondary btn-lg' %>
+          </div>
+      
+        </div>
+    </div>
+  </div>
+</body>

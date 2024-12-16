@@ -1,0 +1,62 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" defer></script>
+
+<body style="background-color: #f8f9fa;">
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-info text-white text-center">
+        <h2>Criar Novo Atendimento</h2>
+      </div>
+      <div class="card-body">
+        <%= form_with(model: @atendimento, local: true) do |form| %>
+          <% if @atendimento.errors.any? %>
+            <div id="error_explanation" class="alert alert-danger">
+              <h2><%= pluralize(@atendimento.errors.count, "erro") %> proibiu este atendimento de ser salvo:</h2>
+              <ul>
+                <% @atendimento.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <!-- Campo Serviço (Primeiro) -->
+          <div class="form-group">
+            <%= form.label :servico_id, 'Serviço', class: 'form-label' %>
+            <%= form.collection_select :servico_id, Servico.all, :id, :nome, { prompt: "Selecione um serviço" }, class: 'form-control' %>
+          </div>
+
+          <!-- Campo Animal (Segundo) -->
+          <div class="form-group">
+            <%= form.label :animal_id, 'Animal', class: 'form-label' %>
+            <%= form.collection_select :animal_id, Animal.all, :id, :nome, { prompt: "Selecione um animal" }, class: 'form-control' %>
+          </div>
+
+          <!-- Campo Funcionário (Terceiro) -->
+          <div class="form-group">
+            <%= form.label :funcionario_id, 'Funcionário', class: 'form-label' %>
+            <%= form.collection_select :funcionario_id, Funcionario.all, :id, :nome, { prompt: "Selecione um Funcionário" }, class: 'form-control' %>
+          </div>
+
+          <!-- Campo Descrição (Último) -->
+          <div class="form-group">
+            <%= form.label :descricao, class: 'form-label' %>
+            <%= form.text_area :descricao, class: 'form-control', placeholder: "Descreva o atendimento..." %>
+          </div>
+
+          <!-- Botão Salvar -->
+          <div class="form-group text-center">
+            <%= form.submit 'Salvar', class: 'btn btn-info btn-lg' %>
+          </div>
+        <% end %>
+                  
+        <!-- Botão Voltar -->
+          <div class="form-group text-center">
+            <%= link_to 'Voltar', atendimentos_path, class: 'btn btn-secondary btn-lg' %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

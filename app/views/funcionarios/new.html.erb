@@ -1,0 +1,59 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body style="background-color: #f8f9fa;">
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-info text-white text-center">
+        <h2>Criar Novo Funcionário</h2> <!-- Alterado para "Criar Novo Funcionário" -->
+      </div>
+      <div class="card-body">
+        <!-- Exibindo erros -->
+        <% if @funcionario.errors.any? %> <!-- Alterado para "funcionario" -->
+          <div id="error_explanation" class="alert alert-danger">
+            <h4><%= pluralize(@funcionario.errors.count, "erro") %> proibiu este funcionário de ser salvo:</h4> <!-- Alterado para "funcionario" -->
+            <ul>
+              <% @funcionario.errors.full_messages.each do |message| %> <!-- Alterado para "funcionario" -->
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!-- Formulário de Cadastro de Funcionário -->
+        <%= form_with(model: @funcionario, local: true) do |form| %> <!-- Alterado para "funcionario" -->
+          <div class="form-group">
+            <%= form.label :nome, class: 'form-label' %>
+            <%= form.text_field :nome, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :funcao, class: 'form-label' %> <!-- Alterado para "função" -->
+            <%= form.text_field :funcao, class: 'form-control' %> <!-- Alterado para "funcao" -->
+          </div>
+
+          <div class="form-group">
+            <%= form.label :telefone, class: 'form-label' %>
+            <%= form.text_field :telefone, class: 'form-control' %>
+          </div>
+
+          <!-- Novo campo para Registro -->
+          <div class="form-group">
+            <%= form.label :registro, class: 'form-label' %>
+            <%= form.text_field :registro, class: 'form-control' %>
+          </div>
+
+          <!-- Botão Salvar e Voltar lado a lado -->
+          <div class="form-group d-flex justify-content-center">
+            <%= form.submit 'Salvar', class: 'btn btn-info btn-lg' %>
+          </div>
+        <% end %>
+      <!-- Botão Voltar -->
+          <div class="form-group text-center">
+            <%= link_to 'Voltar', funcionarios_path, class: 'btn btn-secondary btn-lg' %>
+          </div>
+        </div>
+    </div>
+  </div>
+</body>

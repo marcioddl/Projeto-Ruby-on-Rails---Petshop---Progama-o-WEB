@@ -1,0 +1,54 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body style="background-color: #f8f9fa;">
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-info text-white text-center">
+        <h2>Criar Novo Serviço/Produto</h2>
+      </div>
+      <div class="card-body">
+        <%= form_with model: @servico, local: true do |form| %>
+          <% if @servico.errors.any? %>
+            <div class="alert alert-danger">
+              <h2><%= pluralize(@servico.errors.count, "erro") %> proibiram este serviço de ser salvo:</h2>
+              <ul>
+                <% @servico.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <!-- Campo Nome -->
+          <div class="form-group">
+            <%= form.label :nome, class: 'form-label' %>
+            <%= form.text_field :nome, class: 'form-control' %>
+          </div>
+
+          <!-- Campo Descrição -->
+          <div class="form-group">
+            <%= form.label :descricao, class: 'form-label' %>
+            <%= form.text_area :descricao, class: 'form-control', rows: 4 %>
+          </div>
+
+          <!-- Campo Preço -->
+          <div class="form-group">
+            <%= form.label :preco, class: 'form-label' %>
+            <%= form.number_field :preco, step: 0.01, class: 'form-control' %>
+          </div>
+
+          <!-- Botão de Enviar -->
+          <div class="form-group text-center">
+            <%= form.submit 'Salvar', class: 'btn btn-info btn-lg' %>
+          </div>
+        <% end %>
+                  <!-- Botão Voltar -->
+          <div class="form-group text-center">
+            <%= link_to 'Voltar', servicos_path, class: 'btn btn-secondary btn-lg' %>
+          </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,35 @@
+<!-- app/views/home/index.html.erb -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body style="background-color: #f8f9fa; margin: 0; padding: 0;">
+
+  <!-- Conteúdo principal -->
+  <div id="dashboard" class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card shadow-lg p-4">
+            <h4 class="text-center text-muted mb-4">Escolha uma funcionalidade:</h4>
+            <div class="btn-group-vertical w-100" role="group">
+              <%= link_to 'Gerenciar Donos', donos_path, class: 'btn btn-info btn-lg mb-3' %>
+              <%= link_to 'Gerenciar Animais', animais_path, class: 'btn btn-info btn-lg mb-3' %>
+              <%= link_to 'Gerenciar Atendimentos', atendimentos_path, class: 'btn btn-info btn-lg mb-3' %>
+              <%= link_to 'Gerenciar Funcionarios', funcionarios_path, class: 'btn btn-info btn-lg mb-3' %>
+              <%= link_to 'Gerenciar Serviços/Produtos', servicos_path, class: 'btn btn-info btn-lg mb-3' %>
+
+              <!-- Botão para exportar dados para CSV -->
+              <%= link_to 'Exportar Todos os Dados', export_csv_path, class: 'btn btn-success btn-lg mb-3' %>
+            </div>
+            <div class="container text-right mt-3">
+            <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg mb-3 w-100' %>
+          </div>
+                   
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>

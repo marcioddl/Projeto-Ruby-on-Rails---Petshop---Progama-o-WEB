@@ -1,0 +1,21 @@
+<% if @servicos.total_pages > 1 %>  <!-- Verifica se há mais de uma página -->
+  <ul class="pagination justify-content-center">
+    <% if @servicos.current_page > 1 %>  <!-- Se não for a primeira página -->
+      <li class="page-item">
+        <%= link_to 'Previous', @servicos.previous_page, class: 'page-link' %>
+      </li>
+    <% end %>
+
+    <% (1..@servicos.total_pages).each do |page| %>  <!-- Iterando pelas páginas -->
+      <li class="page-item <%= 'active' if page == @servicos.current_page %>">
+        <%= link_to page, page, class: 'page-link' %>
+      </li>
+    <% end %>
+
+    <% if @servicos.current_page < @servicos.total_pages %>  <!-- Se não for a última página -->
+      <li class="page-item">
+        <%= link_to 'Next', @servicos.next_page, class: 'page-link' %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

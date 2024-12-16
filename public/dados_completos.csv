@@ -1,0 +1,44 @@
+﻿Animal ID,Nome,Idade,Espécie,Raça,Dono
+7,Bolinha,2,Cachorro,Poodle,Tiago
+8,Luna,4,Gato,Persa,Fernanda
+15,teste,12,picher,rjnjnjj,Tiago
+17,jnfdjnj1,54151,kdvmckdm1,knmcdkmk1,Fernanda
+18,hbhb,1,hgvfghv,hbhvgh,Tiago
+19,teste,123,123,123,Tiago
+
+Atendimento ID,Data,Serviço/Produtos,Funcionario ID,Servico ID,Descrição
+8,2024-12-13 00:00:00 UTC,Consulta,Pedro Costa,3,"
+"
+10,2024-12-13 00:00:00 UTC,Consulta,Maria Oliveira,3,.
+11,2024-12-13 00:00:00 UTC,Emergência,Julio Santos,7,.
+14,2024-12-13 00:00:00 UTC,Exame de sangue,Julio Santos,5,.
+21,2024-12-16 00:37:36 UTC,Consulta,Ana Pereira,3,1
+
+Dono ID,Nome,Telefone,Endereço,Email
+2,Fernando,86994714784,Rua Fulano de Tal,fernando@hotmail.com
+3,Tiago,86947125891,rua fulano de cicrano,teste3@hotmail.com
+4,Fernanda,86974147833,avenida principal ,teste5@hotmail.com
+6,Cintia,86998523647,Rua Camelo Paz,teste9@hotmail.com
+11,teste,12345678912,dincjkdnjcnj,kfvnjfnvjnfjin@hotmail.com
+
+Funcionario ID,Nome,Função,Telefone,Registro
+5,Ana Pereira,Recepcionista,223344556,F002
+6,Julio Santos,Veterinário,334455667,F003
+7,Maria Oliveira,Atendente,445566778,F004
+8,Pedro Costa,Veterinário,55698523143,F005
+9,Roberta Souza,Recepcionista,667788990,F006
+10,Lucas Lima,Veterinário,778899001,F007
+11,Fernanda Gomes,Atendente,889900112,F008
+13,cachorrona,trabalhar,12309877774,vasco-99vegetti
+
+Servico ID,Nome,Preço,Descrição
+3,Consulta,95,Consulta veterinária geral.
+4,Vacinação,50,Vacinação contra raiva e outras doenças
+5,Exame de sangue,150,Exame laboratorial completo
+6,Cirurgia,300,Cirurgia de pequeno porte
+7,Emergência,200,Atendimento emergencial para animais
+8,Banho,40,Banho completo para animais
+9,Tosa,30,Corte de pelos
+10,Raio-X,120,Exame de raio-X
+11,Consultoria,80,Consultoria sobre cuidados com animais
+13,shampoo de cachorro,10,shampoo

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema de Gerenciamento do Pet Shop</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body style="background-color: #f8f9fa; margin: 0; padding: 0;">
+
+  <!-- Cabeçalho fixo azul claro -->
+  <header class="bg-info text-white fixed-top py-3">
+    <div class="container d-flex align-items-center">
+      <!-- Logo no canto esquerdo -->
+      <div class="mr-3">
+        <img src="<%= asset_path('logo.png') %>" alt="Logo Pet Shop" style="height: 70px;"> <!-- Ajuste de tamanho -->
+      </div>
+      <!-- Título centralizado -->
+      <div class="text-center flex-grow-1">
+        <h1 class="h3 mb-0">Sistema de Gerenciamento do Pet Shop</h1>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal com espaçamento ajustado -->
+  <div id="content" class="container mt-5" style="padding-top: 100px; padding-bottom: 70px;"> <!-- Espaço para o cabeçalho fixo e rodapé -->
+    <%= yield %> <!-- Aqui será inserido o conteúdo da página -->
+  </div>
+
+  <!-- Rodapé fixo azul claro compacto -->
+  <footer class="bg-info text-white py-2 fixed-bottom" style="height: 60px;">
+    <div class="container text-center">
+      <p class="mb-1">Precisa de ajuda? Contate:</p>
+      <p class="mb-1">
+        <a href="mailto:ajuda@exemplo.com" class="text-white">mfdasilvasousa@aluno.uespi.br</a> |
+        <a href="mailto:support@exemplo.com" class="text-white">mgalizam@aluno.uespi.br</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Função para exibir alertas nativos do navegador
+    function showAlert(message) {
+      alert(message);
+    }
+
+    // Exemplo de uso dos avisos
+    document.addEventListener('DOMContentLoaded', function () {
+      <% if notice %>
+        showAlert('<%= j(notice) %>');
+      <% end %>
+
+      <% if alert %>
+        showAlert('<%= j(alert) %>');
+      <% end %>
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+
+  <h1>Lista de Documentos</h1>
+
+<%= link_to "Novo Documento", new_documento_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Arquivo</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @documentos.each do |documento| %>
+      <tr>
+        <td><%= documento.nome %></td>
+        <td><%= documento.descricao %></td>
+        <td>
+          <%= link_to "Visualizar", documento.arquivo.url, target: "_blank" %>
+          |
+          <%= link_to "Baixar", documento.arquivo.url, download: true %>
+        </td>
+        <td>
+          <%= link_to "Excluir", documento, method: :delete, data: { confirm: "Tem certeza?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

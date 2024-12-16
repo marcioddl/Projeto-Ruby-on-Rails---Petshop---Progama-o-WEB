@@ -1,0 +1,83 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body style="background-color: #f8f9fa;">
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-info text-white text-center">
+        <h2>Lista de Donos</h2>
+      </div>
+      <div class="card-body">
+        <!-- Formulário de Busca -->
+        <div class="mb-3">
+          <%= form_with url: donos_path, method: :get, local: true, class: "form-inline" do %>
+            <div class="form-group">
+              <%= label_tag :search, "Buscar Dono: ", class: 'mr-2' %>
+              <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Digite o nome do dono' %>
+            </div>
+            <%= submit_tag 'Buscar', class: 'btn btn-primary ml-2' %>
+          <% end %>
+        </div>
+
+        <!-- Botões de Novo Dono, PDF e CSV -->
+        <div class="text-right mb-3">
+          <%= link_to 'Novo Dono', new_dono_path, class: 'btn btn-success' %>
+          <%= link_to 'Gerar PDF', gerar_pdf_donos_path, class: 'btn btn-primary ml-2' %>
+          <%= link_to 'Gerar CSV', gerar_csv_donos_path, class: 'btn btn-primary ml-2' %>
+        </div>
+
+        <!-- Tabela de Donos -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>Email</th>
+              <th>Endereço</th>
+              <th>CPF</th> <!-- Adicionando CPF como coluna -->
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @donos.each do |dono| %>
+              <tr>
+                <td><%= dono.id %></td>
+                <td><%= dono.nome %></td>
+                <td>
+                  <!-- Formatação do número de telefone diretamente na view -->
+                  <%= dono.telefone.gsub(/\D/, '').insert(0, '(').insert(3, ') ').insert(9, '-') if dono.telefone.present? %>
+                </td>
+                <td><%= dono.email %></td>
+                <td><%= dono.endereco %></td>
+                <td>
+                  <!-- Formatação do CPF -->
+                  <%= dono.cpf.gsub(/(\d{3})(\d{3})(\d{3})(\d{2})/, '\1.\2.\3-\4') if dono.cpf.present? %>
+                </td> <!-- Exibindo CPF na tabela -->
+                <td>
+                  <%= link_to 'Editar', edit_dono_path(dono), class: 'btn btn-warning btn-sm' %>
+                  |
+                  <%= form_with(model: dono, method: :delete, data: { confirm: 'Você tem certeza que deseja excluir este dono?' }, class: 'd-inline') do |form| %>
+                    <%= form.submit 'Excluir', class: 'btn btn-danger btn-sm' %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <!-- Botão Voltar -->
+        <div class="text-center mt-4">
+          <%= link_to 'Voltar', root_path, class: 'btn btn-secondary' %>
+        </div>
+
+        <!-- Paginação com estilo padrão do Kaminari -->
+        <div class="d-flex justify-content-center mt-3">
+          <%= paginate @donos %>  <!-- Paginação padrão do Kaminari -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>

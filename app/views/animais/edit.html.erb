@@ -1,0 +1,76 @@
+<body style="background-color: #f8f9fa;">
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-info text-white text-center">
+        <h2>Editar Animal</h2>
+      </div>
+      <div class="card-body">
+        <!-- Configura o formulário usando o objeto @animal -->
+        <%= form_with model: @animal, url: animai_path(@animal), local: true, html: { multipart: true } do |form| %> <!-- Adiciona multipart para permitir o envio de arquivos -->
+          <!-- Exibe erros de validação, se houver -->
+          <% if @animal.errors.any? %>
+            <div class="alert alert-danger">
+              <h4><%= pluralize(@animal.errors.count, "erro") %> impediram este animal de ser salvo:</h4>
+              <ul>
+                <% @animal.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <!-- Campo Nome -->
+          <div class="form-group">
+            <%= form.label :nome, "Nome", class: 'text-info' %>
+            <%= form.text_field :nome, class: 'form-control' %>
+          </div>
+
+          <!-- Campo Espécie -->
+          <div class="form-group">
+            <%= form.label :especie, "Espécie", class: 'text-info' %>
+            <%= form.text_field :especie, class: 'form-control' %>
+          </div>
+
+          <!-- Campo Raça -->
+          <div class="form-group">
+            <%= form.label :raca, "Raça", class: 'text-info' %>
+            <%= form.text_field :raca, class: 'form-control' %>
+          </div>
+
+          <!-- Campo Idade -->
+          <div class="form-group">
+            <%= form.label :idade, "Idade", class: 'text-info' %>
+            <%= form.number_field :idade, class: 'form-control' %>
+          </div>
+
+          <!-- Campo Dono -->
+          <div class="form-group">
+            <%= form.label :dono_id, "Dono", class: 'text-info' %>
+            <%= form.collection_select :dono_id, Dono.all, :id, :nome, { prompt: "Selecione um dono" }, class: 'form-control' %>
+          </div>
+
+          <!-- Campo Foto: Permite alterar a imagem armazenada -->
+          <div class="form-group">
+            <%= form.label :foto, "Foto do Animal", class: 'text-info' %>
+            <% if @animal.foto? %> <!-- Verifica se existe uma foto armazenada -->
+              <div>
+                <%= image_tag @animal.foto.url, alt: "Foto do Animal", class: "img-thumbnail", style: "max-width: 100px;" %>
+              </div>
+              <%= form.label :foto, "Alterar Foto", class: 'mt-2' %>
+            <% end %>
+            <%= form.file_field :foto, class: 'form-control' %> <!-- Campo para upload da nova imagem -->
+          </div>
+
+          <!-- Botão Salvar -->
+          <div class="form-group text-center">
+            <%= form.submit "Salvar", class: 'btn btn-info btn-lg' %>
+          </div>
+        <% end %>
+      <!-- Botão Voltar -->
+          <div class="form-group text-center">
+            <%= link_to 'Voltar', animais_path, class: 'btn btn-secondary btn-lg' %>
+          </div>
+        </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,78 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<body style="background-color: #f8f9fa;">
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-info text-white text-center">
+        <h2>Lista de Atendimentos</h2>
+      </div>
+      <div class="card-body">
+        <!-- Formulário de busca -->
+        <div class="mb-3">
+          <%= form_with(url: atendimentos_path, method: :get, local: true, class: 'form-inline') do |form| %>
+            <div class="form-group mr-2">
+              <%= form.label :search, 'Buscar Atendimento:', class: 'mr-2' %>
+              <%= form.text_field :search, value: params[:search], class: 'form-control', placeholder: 'Nome do Animal' %>
+            </div>
+            <%= form.submit 'Buscar', class: 'btn btn-primary' %>
+            <!-- Novo botão "Nota Fiscal" ao lado da caixa de busca -->
+            <%= link_to 'Nota Fiscal', gerar_nota_fiscal_atendimentos_path(search: params[:search]), class: 'btn btn-secondary ml-2' %>
+          <% end %>
+        </div>
+
+        <!-- Botões para Novo Atendimento, Gerar PDF e Gerar CSV -->
+        <div class="text-right mb-3">
+          <%= link_to 'Novo Atendimento', new_atendimento_path, class: 'btn btn-success' %>
+          <%= link_to 'Gerar PDF', gerar_pdf_atendimentos_path, class: 'btn btn-primary ml-2' %>
+          <%= link_to 'Gerar CSV', gerar_csv_atendimentos_path, class: 'btn btn-primary ml-2' %>
+        </div>
+
+        <!-- Tabela de Atendimentos -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Data</th>
+              <th>Serviço/Produto</th>
+              <th>Funcionário</th>
+              <th>Animal</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @atendimentos.each do |atendimento| %>
+              <tr>
+                <td><%= atendimento.id %></td>
+                <td><%= atendimento.data.strftime('%d/%m/%Y %H:%M') %></td>
+                <td><%= atendimento.servico.nome %></td> 
+                <td><%= atendimento.funcionario.nome %></td>
+                <td><%= atendimento.animal.nome %></td>
+                <td>
+                  <!-- Botão Editar -->
+                  <%= link_to 'Editar', edit_atendimento_path(atendimento), class: 'btn btn-warning btn-sm' %>
+
+                  <!-- Botão Excluir -->
+                  <%= form_with(model: atendimento, method: :delete, class: 'd-inline') do |form| %>
+                  <%= form.submit 'Excluir', class: 'btn btn-danger btn-sm' %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <!-- Link para Voltar -->
+        <div class="text-center mt-4 mt-3">
+          <%= link_to 'Voltar', root_path, class: 'btn btn-secondary' %>
+
+        <!-- Paginação -->
+        <div class="d-flex justify-content-center mt-3">
+          <%= paginate @atendimentos %>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
