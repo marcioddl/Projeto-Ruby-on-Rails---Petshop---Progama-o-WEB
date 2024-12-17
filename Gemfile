@@ -41,7 +41,7 @@ gem "devise"
 gem "kaminari"
 
 # Interface Responsiva
-gem "bootstrap", "~> 5.0.2"
+gem "bootstrap", "~> 5.3.3"
 
 # Gerar PDFs
 gem "prawn"
