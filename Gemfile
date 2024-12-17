@@ -50,7 +50,7 @@ gem "prawn"
 gem "csv"
 
   # Upload de Arquivos
-  gem "carrierwave", "~> 2.0"
+  gem "carrierwave", "~> 3.1"
 
   gem "mini_magick"
 
